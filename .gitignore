@@ -1,0 +1,15 @@
+# Ambiente virtual
+venv/
+
+# Chaves e segredos — NUNCA commitar
+.env
+
+# Cache do Python
+__pycache__/
+*.pyc
+
+# VS Code
+.vscode/
+
+# Claude Code (configurações locais)
+.claude/
