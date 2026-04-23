@@ -51,11 +51,11 @@ maquina-conteudo-dp/
 
 - [x] **Fase 0 — Setup do ambiente** ✅ CONCLUÍDA
 - [x] **Fase 1 — Coletor RSS** ✅ CONCLUÍDA
-- [ ] **Fase 2 — Curador com Claude API** ← PRÓXIMA
-- [ ] Fase 3 — Integração Notion
+- [x] **Fase 2 — Curador com IA (Groq)** ✅ CONCLUÍDA
+- [ ] **Fase 3 — Dashboard HTML + GitHub Pages** ← PRÓXIMA
 - [ ] Fase 4 — Gerador de posts aplicando Prompt Mestre
 - [ ] Fase 5 — Agendamento automático
-- [ ] Fase 6 — Evoluções futuras
+- [ ] Fase 6 — Evoluções futuras (Notion kanban, mobile)
 
 ---
 
@@ -82,18 +82,26 @@ maquina-conteudo-dp/
 
 ---
 
-## 🚀 Próximo passo: Fase 2 — Curador com Claude API
+## ✅ Fase 2 — Curador com IA (CONCLUÍDA)
 
-**Objetivo:** receber a lista de artigos do coletor e usar Claude API pra pontuar/curar quais são mais relevantes pro nicho DP/RH do Abner.
+- API usada: **Groq** (gratuita, modelo llama-3.3-70b-versatile)
+- Motivo: Google Gemini free tier com limit=0 no projeto criado (cota não ativada)
+- Bibliotecas: `groq`, `python-dotenv`, `google-genai` (instalada mas não usada)
+- Script: `src/curador.py` — coleta artigos e retorna os 3 mais relevantes com nota e justificativa
+- Chaves no `.env`: `GROQ_API_KEY` (Gemini key abandonada)
 
-**Entregas previstas da Fase 2:**
-1. Obter API key da Anthropic (Abner precisa criar conta em console.anthropic.com se ainda não tiver)
-2. Instalar biblioteca `anthropic` e `python-dotenv` no venv
-3. Criar arquivo `.env` com a API key (e adicionar `.env` ao `.gitignore` pra NUNCA commitar chave)
-4. Criar `src/curador.py` que recebe lista de artigos e chama Claude API
-5. Definir prompt de curadoria (critérios: relevância DP/RH, novidade, impacto prático)
-6. Testar curadoria com os artigos do Conjur
-7. Commit e push
+## 🚀 Próximo passo: Fase 3 — Dashboard HTML + GitHub Pages
+
+**Decisão:** substituir Notion por HTML + GitHub Pages.
+- Motivo: evitar dependência de terceiros, mais profissional para apresentação, custo zero
+- Notion fica como opção futura na Fase 6
+
+**Entregas previstas da Fase 3:**
+1. Modificar `curador.py` para retornar dados estruturados (JSON)
+2. Criar `src/gerador_html.py` que gera `docs/index.html` com as pautas curadas
+3. Ativar GitHub Pages no repositório (apontando para pasta `docs/`)
+4. Testar: rodar pipeline completo e ver resultado no site
+5. Commit e push
 
 ---
 
