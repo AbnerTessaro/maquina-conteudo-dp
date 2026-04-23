@@ -1,16 +1,14 @@
 import os
-import google.generativeai as genai
+from groq import Groq
 from dotenv import load_dotenv
 from colector import fetch_rss_feed
 
 load_dotenv()
 
-genai.configure(api_key=os.getenv("GEMINI_API_KEY"))
+client = Groq(api_key=os.getenv("GROQ_API_KEY"))
 
 
 def curar_artigos(artigos):
-    model = genai.GenerativeModel("gemini-1.5-flash")
-
     lista = ""
     for i, artigo in enumerate(artigos, 1):
         lista += f"{i}. Título: {artigo['title']}\n   Resumo: {artigo['summary'][:300]}\n\n"
@@ -30,8 +28,11 @@ Para cada artigo selecionado, informe:
 Artigos:
 {lista}"""
 
-    resposta = model.generate_content(prompt)
-    return resposta.text
+    resposta = client.chat.completions.create(
+        model="llama-3.3-70b-versatile",
+        messages=[{"role": "user", "content": prompt}]
+    )
+    return resposta.choices[0].message.content
 
 
 if __name__ == "__main__":
