@@ -3,11 +3,10 @@ import sys
 from datetime import datetime
 
 sys.path.append(os.path.dirname(__file__))
-from colector import fetch_rss_feed
+from colector import fetch_todos_feeds
 from curador import curar_artigos
 from gerador_posts import gerar_post
 
-FEED_URL = "https://www.conjur.com.br/rss.xml"
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "index.html")
 
 
@@ -152,8 +151,9 @@ def salvar_txt(pautas_com_posts):
 
 
 def main():
-    print("Coletando artigos...")
-    artigos = fetch_rss_feed(FEED_URL)
+    print("Coletando artigos de todos os feeds...")
+    artigos = fetch_todos_feeds()
+    artigos = artigos[:25]
     print(f"{len(artigos)} artigos coletados. Curando com IA...")
 
     pautas = curar_artigos(artigos)

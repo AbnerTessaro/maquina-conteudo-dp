@@ -16,7 +16,7 @@ def curar_artigos(artigos):
 
     prompt = f"""Você é um curador de conteúdo especializado em Departamento Pessoal (DP) e Recursos Humanos (RH) no Brasil.
 
-Analise os artigos abaixo e selecione os 3 mais relevantes para profissionais de DP/RH, considerando:
+Analise os artigos abaixo e selecione os 5 mais relevantes para profissionais de DP/RH, considerando:
 - Relevância para legislação trabalhista brasileira
 - Impacto prático no dia a dia do DP
 - Novidades ou mudanças importantes

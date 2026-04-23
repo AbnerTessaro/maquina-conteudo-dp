@@ -1,18 +1,14 @@
 import feedparser
 
+FEEDS = [
+    "https://www.conjur.com.br/rss.xml",          # Consultor Jurídico — direito trabalhista
+    "https://feeds.folha.uol.com.br/mercado/rss091.xml",  # Folha — mercado/emprego
+    "https://agenciabrasil.ebc.com.br/rss/economia/feed.rss",  # Agência Brasil — economia
+]
+
 
 def fetch_rss_feed(feed_url):
-    """
-    Fetches articles from an RSS feed.
-    
-    Args:
-        feed_url (str): The URL of the RSS feed
-        
-    Returns:
-        list: A list of articles with title, link, and summary
-    """
     feed = feedparser.parse(feed_url)
-    
     articles = []
     for entry in feed.entries:
         article = {
@@ -21,19 +17,24 @@ def fetch_rss_feed(feed_url):
             'summary': entry.get('summary', 'No summary')
         }
         articles.append(article)
-    
     return articles
 
 
+def fetch_todos_feeds():
+    todos = []
+    for url in FEEDS:
+        try:
+            artigos = fetch_rss_feed(url)
+            todos.extend(artigos)
+        except Exception:
+            pass
+    return todos
+
+
 if __name__ == '__main__':
-    # Test with a real DP/HR RSS feed
-    feed_url = 'https://www.conjur.com.br/rss.xml'
-    
-    print("Collecting articles from:", feed_url)
-    articles = fetch_rss_feed(feed_url)
-    
-    print(f"\nFound {len(articles)} articles:\n")
-    
-    for i, article in enumerate(articles[:5], 1):  # Show first 5
+    print("Coletando de todos os feeds...")
+    artigos = fetch_todos_feeds()
+    print(f"\nTotal: {len(artigos)} artigos coletados de {len(FEEDS)} fontes\n")
+    for i, article in enumerate(artigos[:5], 1):
         print(f"{i}. {article['title']}")
         print(f"   Link: {article['link']}\n")
