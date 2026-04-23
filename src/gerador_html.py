@@ -121,6 +121,36 @@ def gerar_html(pautas_com_posts):
 </html>"""
 
 
+def salvar_txt(pautas_com_posts):
+    data_hoje = datetime.now().strftime("%Y-%m-%d")
+    pasta_data = os.path.join(os.path.dirname(__file__), "..", "data")
+    os.makedirs(pasta_data, exist_ok=True)
+    arquivo = os.path.join(pasta_data, f"posts_{data_hoje}.txt")
+
+    with open(arquivo, "w", encoding="utf-8") as f:
+        f.write(f"RASCUNHOS DE POSTS — {datetime.now().strftime('%d/%m/%Y às %H:%M')}\n")
+        f.write("Gerado automaticamente pela Máquina de Conteúdo DP\n")
+        f.write("=" * 60 + "\n\n")
+
+        for i, (pauta, slides) in enumerate(pautas_com_posts, 1):
+            f.write(f"POST {i} DE {len(pautas_com_posts)}\n")
+            f.write(f"Pauta: {pauta['titulo']}\n")
+            f.write(f"Nota: {pauta['nota']}/10\n")
+            f.write(f"Link: {pauta['link']}\n")
+            f.write("-" * 60 + "\n\n")
+
+            for slide in slides:
+                texto = slide["texto"]
+                if isinstance(texto, list):
+                    texto = "\n".join(texto)
+                f.write(f"[ SLIDE {slide['numero']} — {slide['titulo']} ]\n")
+                f.write(texto + "\n\n")
+
+            f.write("=" * 60 + "\n\n")
+
+    return arquivo
+
+
 def main():
     print("Coletando artigos...")
     artigos = fetch_rss_feed(FEED_URL)
@@ -142,7 +172,9 @@ def main():
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html)
 
-    print("Site gerado em: docs/index.html")
+    arquivo_txt = salvar_txt(pautas_com_posts)
+    print(f"Site gerado em: docs/index.html")
+    print(f"Posts salvos em: {os.path.relpath(arquivo_txt)}")
 
 
 if __name__ == "__main__":
