@@ -1,0 +1,35 @@
+name: Atualizar Pautas Diariamente
+
+on:
+  schedule:
+    - cron: '0 10 * * *'  # Todo dia às 07:00 horário de Brasília (10:00 UTC)
+  workflow_dispatch:        # Permite rodar manualmente pelo GitHub
+
+jobs:
+  atualizar:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositório
+        uses: actions/checkout@v4
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Instalar dependências
+        run: pip install feedparser groq python-dotenv google-genai
+
+      - name: Rodar o pipeline
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+        run: python src/gerador_html.py
+
+      - name: Salvar resultado no repositório
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/index.html data/
+          git diff --staged --quiet || git commit -m "Auto: atualizar pautas do dia"
+          git push
