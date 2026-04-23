@@ -11,7 +11,8 @@ Projeto de aprendizado de programação com aplicação prática para a marca pe
 - [x] **Fase 0 — Setup do ambiente** (Python, VS Code, Git, venv)
 - [x] **Fase 1 — Coletor RSS** (`src/colector.py`)
 - [x] **Fase 2 — Curador com IA** (`src/curador.py`)
-- [ ] Fase 3 — Integração Notion
+- [x] **Fase 3 — Dashboard HTML + GitHub Pages** (`src/gerador_html.py`)
+- [ ] Fase 4 — Gerador de posts
 - [ ] Fase 4 — Gerador de posts
 - [ ] Fase 5 — Agendamento automático
 

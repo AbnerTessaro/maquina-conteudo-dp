@@ -52,8 +52,8 @@ maquina-conteudo-dp/
 - [x] **Fase 0 — Setup do ambiente** ✅ CONCLUÍDA
 - [x] **Fase 1 — Coletor RSS** ✅ CONCLUÍDA
 - [x] **Fase 2 — Curador com IA (Groq)** ✅ CONCLUÍDA
-- [ ] **Fase 3 — Dashboard HTML + GitHub Pages** ← PRÓXIMA
-- [ ] Fase 4 — Gerador de posts aplicando Prompt Mestre
+- [x] **Fase 3 — Dashboard HTML + GitHub Pages** ✅ CONCLUÍDA
+- [ ] **Fase 4 — Gerador de posts aplicando Prompt Mestre** ← PRÓXIMA
 - [ ] Fase 5 — Agendamento automático
 - [ ] Fase 6 — Evoluções futuras (Notion kanban, mobile)
 
