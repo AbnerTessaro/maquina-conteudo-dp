@@ -18,8 +18,22 @@
         .card h2 a { color: #1e293b; text-decoration: none; }
         .card h2 a:hover { color: #3b82f6; }
         .motivo { color: #475569; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; }
-        .btn { display: inline-block; background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; }
+        .card-acoes { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0; }
+        .btn { display: inline-block; background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; border: none; cursor: pointer; }
         .btn:hover { background: #2563eb; }
+        .btn-post { background: #6366f1; }
+        .btn-post:hover { background: #4f46e5; }
+        .post-slides { display: none; margin-top: 1.2rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; }
+        .post-slides.aberto { display: block; }
+        .post-titulo { font-size: 0.85rem; color: #64748b; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .slide { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 0.7rem; }
+        .slide-header { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }
+        .slide-num { background: #1e293b; color: white; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; }
+        .slide-titulo { font-size: 0.8rem; font-weight: bold; color: #475569; flex: 1; }
+        .btn-copiar { background: #10b981; color: white; border: none; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer; }
+        .btn-copiar:hover { background: #059669; }
+        .btn-copiar.copiado { background: #6b7280; }
+        .slide-texto { font-size: 0.9rem; line-height: 1.6; color: #334155; white-space: pre-wrap; }
         footer { text-align: center; color: #94a3b8; font-size: 0.8rem; padding: 1.5rem; }
     </style>
 </head>
@@ -28,28 +42,254 @@
         <h1>Pautas DP/RH do Dia</h1>
         <p>Curadas por IA para @abner.com.dp</p>
     </header>
-    <p class="atualizacao">Atualizado em 23/04/2026 às 16:46</p>
+    <p class="atualizacao">Atualizado em 23/04/2026 às 17:02</p>
     <div class="container">
         
         <div class="card">
             <span class="nota" style="background:#22c55e;">9/10</span>
             <h2><a href="https://www.conjur.com.br/2026-abr-23/stf-suspende-julgamento-sobre-validade-do-crime-de-violencia-institucional/" target="_blank">STF suspende julgamento sobre validade do crime de violência institucional</a></h2>
-            <p class="motivo">É relevante por tratar da constitucionalidade do crime de violência institucional, que afeta a segurança e o bem-estar no ambiente de trabalho.</p>
-            <a href="https://www.conjur.com.br/2026-abr-23/stf-suspende-julgamento-sobre-validade-do-crime-de-violencia-institucional/" target="_blank" class="btn">Ler artigo →</a>
+            <p class="motivo">Relevante para DP/RH por tratar de crime de violência institucional, que pode impactar a gestão de recursos humanos em ambientes de trabalho.</p>
+            <div class="card-acoes">
+                <a href="https://www.conjur.com.br/2026-abr-23/stf-suspende-julgamento-sobre-validade-do-crime-de-violencia-institucional/" target="_blank" class="btn">Ler artigo →</a>
+                <button class="btn btn-post" onclick="togglePost('post-0')">Ver rascunho do post ▼</button>
+            </div>
+            <div class="post-slides" id="post-0">
+                <h3 class="post-titulo">Rascunho — Carrossel Instagram</h3>
+                
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 1</span>
+                <span class="slide-titulo">CAPA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Violencia Institucional">Violencia Institucional</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 2</span>
+                <span class="slide-titulo">CONTEXTO</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="O STF suspendeu o julgamento sobre a validade do crime de **violência institucional**. Isso pode impactar a gestão de **recursos humanos** em ambientes de trabalho. A decisão pode afetar como sua empresa lida com conflitos internos.">O STF suspendeu o julgamento sobre a validade do crime de **violência institucional**. Isso pode impactar a gestão de **recursos humanos** em ambientes de trabalho. A decisão pode afetar como sua empresa lida com conflitos internos.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 3</span>
+                <span class="slide-titulo">O QUE MUDA NA PRÁTICA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Algumas mudanças práticas incluem: 
+         • **Implementar** políticas de prevenção de violência institucional, 
+         • **Treinar** funcionários sobre como lidar com situações de conflito, 
+         • **Revisar** e **atualizar** os códigos de conduta internos.">Algumas mudanças práticas incluem: <br>         • **Implementar** políticas de prevenção de violência institucional, <br>         • **Treinar** funcionários sobre como lidar com situações de conflito, <br>         • **Revisar** e **atualizar** os códigos de conduta internos.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 4</span>
+                <span class="slide-titulo">COMO SE ADEQUAR</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Para se adequar, sua empresa deve:
+         1. **Desenvolver** um plano de ação para prevenir a violência institucional, 
+         2. **Estabelecer** canais de comunicação para denúncias anônimas, 
+         3. **Realizar** auditorias regulares para identificar e corrigir problemas.">Para se adequar, sua empresa deve:<br>         1. **Desenvolver** um plano de ação para prevenir a violência institucional, <br>         2. **Estabelecer** canais de comunicação para denúncias anônimas, <br>         3. **Realizar** auditorias regulares para identificar e corrigir problemas.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 5</span>
+                <span class="slide-titulo">O RISCO DE NÃO SE ADEQUAR</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Se sua empresa não se adequar, pode enfrentar:
+         • **Processos** legais por violação dos direitos dos funcionários, 
+         • **Dano** à reputação da empresa, 
+         • **Perda** de confiança dos funcionários e do público.">Se sua empresa não se adequar, pode enfrentar:<br>         • **Processos** legais por violação dos direitos dos funcionários, <br>         • **Dano** à reputação da empresa, <br>         • **Perda** de confiança dos funcionários e do público.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 6</span>
+                <span class="slide-titulo">RESUMO PRÁTICO</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Em resumo, é crucial que sua empresa esteja preparada para lidar com a **violência institucional** de forma eficaz, **treinando** funcionários, **revisando** políticas e **estabelecendo** canais de comunicação abertos.">Em resumo, é crucial que sua empresa esteja preparada para lidar com a **violência institucional** de forma eficaz, **treinando** funcionários, **revisando** políticas e **estabelecendo** canais de comunicação abertos.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 7</span>
+                <span class="slide-titulo">CTA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="SALVA ESSE POST para entender melhor a importância da prevenção da violência institucional ↓
+Ficou com dúvida? Me chama no direct.">SALVA ESSE POST para entender melhor a importância da prevenção da violência institucional ↓<br>Ficou com dúvida? Me chama no direct.</p>
+        </div>
+            </div>
         </div>
         <div class="card">
             <span class="nota" style="background:#22c55e;">8/10</span>
             <h2><a href="https://www.conjur.com.br/2026-abr-23/cnj-reage-a-litigancia-abusiva-com-a-recomendacao-159/" target="_blank">CNJ reage à litigância abusiva com a Recomendação 159</a></h2>
-            <p class="motivo">Relevante por lidar com a prevenção de litigância abusiva, que pode impactar o departamento pessoal e recursos humanos de empresas no tocante a ações trabalhistas.</p>
-            <a href="https://www.conjur.com.br/2026-abr-23/cnj-reage-a-litigancia-abusiva-com-a-recomendacao-159/" target="_blank" class="btn">Ler artigo →</a>
+            <p class="motivo">Importante para DP/RH pois aborda a litigância abusiva, um tema que pode afetar a gestão de conflitos e processos judiciais relacionados ao trabalho.</p>
+            <div class="card-acoes">
+                <a href="https://www.conjur.com.br/2026-abr-23/cnj-reage-a-litigancia-abusiva-com-a-recomendacao-159/" target="_blank" class="btn">Ler artigo →</a>
+                <button class="btn btn-post" onclick="togglePost('post-1')">Ver rascunho do post ▼</button>
+            </div>
+            <div class="post-slides" id="post-1">
+                <h3 class="post-titulo">Rascunho — Carrossel Instagram</h3>
+                
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 1</span>
+                <span class="slide-titulo">CAPA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Litigância Abusiva">Litigância Abusiva</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 2</span>
+                <span class="slide-titulo">CONTEXTO</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="A **Recomendação 159** do CNJ visa combater a litigância abusiva. Isso pode impactar sua empresa em processos judiciais relacionados ao trabalho.">A **Recomendação 159** do CNJ visa combater a litigância abusiva. Isso pode impactar sua empresa em processos judiciais relacionados ao trabalho.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 3</span>
+                <span class="slide-titulo">O QUE MUDA NA PRÁTICA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="• **Identifique** os padrões de litigância abusiva
+• **Documente** as ações judiciais relacionadas ao trabalho
+• **Implemente** estratégias para prevenir a litigância abusiva">• **Identifique** os padrões de litigância abusiva<br>• **Documente** as ações judiciais relacionadas ao trabalho<br>• **Implemente** estratégias para prevenir a litigância abusiva</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 4</span>
+                <span class="slide-titulo">COMO SE ADEQUAR</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="1. **Analise** os processos judiciais em curso para identificar possíveis casos de litigância abusiva
+2. **Desenvolva** um plano de ação para prevenir a litigância abusiva
+3. **Treine** sua equipe para lidar com situações de litigância abusiva">1. **Analise** os processos judiciais em curso para identificar possíveis casos de litigância abusiva<br>2. **Desenvolva** um plano de ação para prevenir a litigância abusiva<br>3. **Treine** sua equipe para lidar com situações de litigância abusiva</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 5</span>
+                <span class="slide-titulo">O RISCO DE NÃO SE ADEQUAR</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="• **Multas** e penalidades por litigância abusiva
+• **Dano** à reputação da empresa
+• **Custo** excessivo com processos judiciais">• **Multas** e penalidades por litigância abusiva<br>• **Dano** à reputação da empresa<br>• **Custo** excessivo com processos judiciais</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 6</span>
+                <span class="slide-titulo">RESUMO PRÁTICO</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Adeque sua empresa às novas diretrizes do CNJ para evitar a litigância abusiva e reduzir os riscos relacionados aos processos judiciais do trabalho.">Adeque sua empresa às novas diretrizes do CNJ para evitar a litigância abusiva e reduzir os riscos relacionados aos processos judiciais do trabalho.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 7</span>
+                <span class="slide-titulo">CTA FINAL</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="SALVA ESSE POST para entender como a Recomendação 159 impacta sua empresa ↓
+Ficou com dúvida? Me chama no direct.">SALVA ESSE POST para entender como a Recomendação 159 impacta sua empresa ↓<br>Ficou com dúvida? Me chama no direct.</p>
+        </div>
+            </div>
         </div>
         <div class="card">
             <span class="nota" style="background:#22c55e;">8/10</span>
-            <h2><a href="https://www.conjur.com.br/2026-abr-23/tj-sp-condena-escola-por-bullying-racial-sofrido-por-aluna-de-10-anos/" target="_blank">Escola é condenada por bullying racial sofrido por aluna de 10 anos</a></h2>
-            <p class="motivo">Importante por abordar a responsabilidade das instituições em prevenir e combater o bullying, o que é aplicável também ao ambiente de trabalho.</p>
-            <a href="https://www.conjur.com.br/2026-abr-23/tj-sp-condena-escola-por-bullying-racial-sofrido-por-aluna-de-10-anos/" target="_blank" class="btn">Ler artigo →</a>
+            <h2><a href="https://www.conjur.com.br/2026-abr-23/vamos-continuar-trabalhando-equivale-a-pedido-explicito-de-voto-diz-tse/" target="_blank">‘Vamos continuar trabalhando’ equivale a pedido explícito de voto, diz TSE</a></h2>
+            <p class="motivo">Relevante para DP/RH por discutir a propaganda eleitoral antecipada, o que pode ter implicações na comunicação interna e externa das empresas durante períodos eleitorais.</p>
+            <div class="card-acoes">
+                <a href="https://www.conjur.com.br/2026-abr-23/vamos-continuar-trabalhando-equivale-a-pedido-explicito-de-voto-diz-tse/" target="_blank" class="btn">Ler artigo →</a>
+                <button class="btn btn-post" onclick="togglePost('post-2')">Ver rascunho do post ▼</button>
+            </div>
+            <div class="post-slides" id="post-2">
+                <h3 class="post-titulo">Rascunho — Carrossel Instagram</h3>
+                
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 1</span>
+                <span class="slide-titulo">CAPA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Propaganda Eleitoral no Ambiente de Trabalho">Propaganda Eleitoral no Ambiente de Trabalho</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 2</span>
+                <span class="slide-titulo">CONTEXTO</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="A propaganda eleitoral antecipada pode ter implicações na comunicação interna e externa das empresas. De acordo com o TSE, expressões como 'Vamos continuar trabalhando' podem ser consideradas como pedido explícito de voto.">A propaganda eleitoral antecipada pode ter implicações na comunicação interna e externa das empresas. De acordo com o TSE, expressões como 'Vamos continuar trabalhando' podem ser consideradas como pedido explícito de voto.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 3</span>
+                <span class="slide-titulo">O QUE MUDA NA PRÁTICA</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="• **Evite** usar linguagem que possa ser interpretada como propaganda eleitoral antecipada em comunicações internas e externas. 
+                       • **Verifique** se as mensagens da empresa não contenham pedidos explícitos ou implícitos de voto.">• **Evite** usar linguagem que possa ser interpretada como propaganda eleitoral antecipada em comunicações internas e externas. <br>                       • **Verifique** se as mensagens da empresa não contenham pedidos explícitos ou implícitos de voto.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 4</span>
+                <span class="slide-titulo">COMO SE ADEQUAR</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="1. **Desenvolva** uma política de comunicação eleitoral clara para evitar problemas legais. 
+                     2. **Treine** os funcionários sobre o que é considerado propaganda eleitoral antecipada e como evitar. 
+                     3. **Monitore** as comunicações da empresa para garantir o cumprimento da legislação eleitoral.">1. **Desenvolva** uma política de comunicação eleitoral clara para evitar problemas legais. <br>                     2. **Treine** os funcionários sobre o que é considerado propaganda eleitoral antecipada e como evitar. <br>                     3. **Monitore** as comunicações da empresa para garantir o cumprimento da legislação eleitoral.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 5</span>
+                <span class="slide-titulo">O RISCO DE NÃO SE ADEQUAR</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="• **Multas** por descumprimento da legislação eleitoral. 
+                     • **Dano** à reputação da empresa devido a práticas de propaganda eleitoral antecipada. 
+                     • **Processos** legais contra a empresa ou seus funcionários.">• **Multas** por descumprimento da legislação eleitoral. <br>                     • **Dano** à reputação da empresa devido a práticas de propaganda eleitoral antecipada. <br>                     • **Processos** legais contra a empresa ou seus funcionários.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 6</span>
+                <span class="slide-titulo">RESUMO PRÁTICO</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="Para evitar problemas legais, é crucial que as empresas **monitorem** suas comunicações internas e externas durante períodos eleitorais e **treinem** seus funcionários sobre o que constitui propaganda eleitoral antecipada.">Para evitar problemas legais, é crucial que as empresas **monitorem** suas comunicações internas e externas durante períodos eleitorais e **treinem** seus funcionários sobre o que constitui propaganda eleitoral antecipada.</p>
+        </div>
+        <div class="slide">
+            <div class="slide-header">
+                <span class="slide-num">Slide 7</span>
+                <span class="slide-titulo">CTA FINAL</span>
+                <button class="btn-copiar" onclick="copiar(this)">Copiar</button>
+            </div>
+            <p class="slide-texto" data-texto="SALVA ESSE POST para garantir que sua empresa esteja preparada para os períodos eleitorais ↓
+Ficou com dúvida? Me chama no direct.">SALVA ESSE POST para garantir que sua empresa esteja preparada para os períodos eleitorais ↓<br>Ficou com dúvida? Me chama no direct.</p>
+        </div>
+            </div>
         </div>
     </div>
     <footer>Gerado automaticamente · Máquina de Conteúdo DP</footer>
+    <script>
+        function togglePost(id) {
+            const el = document.getElementById(id);
+            el.classList.toggle('aberto');
+        }
+        function copiar(btn) {
+            const texto = btn.closest('.slide').querySelector('.slide-texto').dataset.texto;
+            navigator.clipboard.writeText(texto).then(() => {
+                btn.textContent = 'Copiado!';
+                btn.classList.add('copiado');
+                setTimeout(() => { btn.textContent = 'Copiar'; btn.classList.remove('copiado'); }, 2000);
+            });
+        }
+    </script>
 </body>
 </html>
