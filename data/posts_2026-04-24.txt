@@ -1,167 +1,165 @@
-RASCUNHOS DE POSTS — 24/04/2026 às 14:55
+RASCUNHOS DE POSTS — 24/04/2026 às 13:45
 Gerado automaticamente pela Máquina de Conteúdo DP
 ============================================================
 
 POST 1 DE 5
-Pauta: Clubes de futebol têm de pagar adicional noturno a jogadores, decide TST
+Pauta: ESocial Atualiza Cálculo Previdenciário - ALERTA DE INDISPONIBILIDADE NO DIA 25/04/2026
 Nota: 9/10
-Link: https://www.conjur.com.br/2026-abr-24/clubes-de-futebol-tem-de-pagar-adicional-noturno-a-jogadores-decide-tst/
+Link: https://ebskills.com.br/noticia/877
 ------------------------------------------------------------
 
-[ SLIDE 1 — CLUBES DEVEM PAGAR ADICIONAL NOTURNO ]
-Pagamento de adicional noturno
+[ SLIDE 1 — CAPA ]
+Atualização no eSocial
 
 [ SLIDE 2 — CONTEXTO ]
-O Tribunal Superior do Trabalho decide que clubes de futebol devem pagar adicional noturno a jogadores. A decisão se baseia na lei trabalhista, garantindo direitos aos atletas.
+O eSocial atualizou o cálculo previdenciário. Isso afeta a prática de DP/RH.
 
-[ SLIDE 3 — O QUE MUDA NA PRÁTICA ]
-• **Pagam** adicional noturno aos jogadores
-• **Respeitam** o art. 73 da CLT
+[ SLIDE 3 — O QUE MUDA NA PRACTICA ]
+• **Atualize** o cálculo previdenciário no eSocial
+• **Ajuste** os processos internos de acordo com a nova regra
 
 [ SLIDE 4 — COMO SE ADEQUAR ]
-1. **Verificar** se os contratos dos jogadores incluem adicional noturno
-2. **Atualizar** os pagamentos de acordo com a decisão do TST
-3. **Implementar** controles para garantir o pagamento correto
+1. **Verifique** se o sistema de gestão de RH está atualizado
+2. **Treine** os funcionários sobre as mudanças no cálculo previdenciário
 
 [ SLIDE 5 — O RISCO DE NÃO SE ADEQUAR ]
-• **Multas** e penalidades por não pagamento do adicional noturno
-• **Processos** trabalhistas por descumprimento da legislação
+• **Multas** por não cumprimento da legislação
+• **Erros** no cálculo previdenciário afetando a folha de pagamento
 
 [ SLIDE 6 — RESUMO PRÁTICO ]
-Clubes de futebol devem pagar adicional noturno aos jogadores de acordo com a decisão do TST, para evitar riscos legais.
+Atualize o cálculo previdenciário e ajuste os processos para evitar multas e erros
 
-[ SLIDE 7 — CTA FINAL ]
-SALVA ESSE POST para entender as implicações da decisão do TST sobre adicional noturno para jogadores de futebol ↓
+[ SLIDE 7 — CTA ]
+SALVA ESSE POST para lembrar de atualizar o cálculo previdenciário ↓
 Ficou com dúvida? Me chama no direct.
 
 ============================================================
 
 POST 2 DE 5
-Pauta: Diligências genéricas não servem para validar invasão de imóvel, diz STJ
+Pauta: Rescisão no Contrato de Experiência: Deve emitir seguro-desemprego?
 Nota: 8/10
-Link: https://www.conjur.com.br/2026-abr-24/diligencias-genericas-nao-servem-para-validar-invasao-de-imovel-diz-stj/
+Link: https://ebskills.com.br/noticia/876
 ------------------------------------------------------------
 
 [ SLIDE 1 — CAPA ]
-Diligências genéricas inválidas?
+Rescisão no Contrato de Experiência
 
 [ SLIDE 2 — CONTEXTO ]
-O STJ discute a validade de **diligências genéricas** em processos judiciais. Isso é importante para sua empresa porque impacta na **defesa** em processos trabalhistas.
+A rescisão de contratos de experiência pode gerar dúvidas sobre o direito a **seguro-desemprego**. De acordo com o art. 474 da CLT, o contrato de experiência é uma categoria especial de contratação.
 
 [ SLIDE 3 — O QUE MUDA NA PRÁTICA ]
-• **Realizar** diligências específicas e detalhadas em processos judiciais.
-• **Prover** documentação precisa para **fundamentar** suas alegações.
+• **Deve** emitir seguro-desemprego se o contrato for rescindido sem justa causa. • **Pode** ser necessário calcular o valor do seguro-desemprego com base no salário do trabalhador.
 
 [ SLIDE 4 — COMO SE ADEQUAR ]
-1. **Verificar** os procedimentos internos para garantir que as diligências sejam **específicas** e **detalhadas**.
-2. **Treinar** sua equipe para **entender** a importância da **documentação** precisa.
+1. **Verifique** se o contrato de experiência foi rescindido sem justa causa. 2. **Calcule** o valor do seguro-desemprego de acordo com a legislação vigente, como a Lei nº 7.998/1990.
 
 [ SLIDE 5 — O RISCO DE NÃO SE ADEQUAR ]
-• **Perda** de processos judiciais devido à falta de **provas** concretas.
-• **Multas** e **penalidades** por não seguir os **requisitos legais** estabelecidos.
+• **Multa** por não emitir o seguro-desemprego quando devido. • **Processo** trabalhista por não cumprir com as obrigações legais.
 
 [ SLIDE 6 — RESUMO PRÁTICO ]
-Sua empresa precisa ter **procedimentos claros** para realizar **diligências específicas** e manter **documentação precisa** para evitar **riscos** legais.
+Emita o seguro-desemprego se o contrato de experiência for rescindido sem justa causa, calculando o valor de acordo com a legislação.
 
 [ SLIDE 7 — CTA ]
-SALVA ESSE POST para lembrar sobre a importância de diligências específicas ↓
+SALVA ESSE POST para entender melhor o direito a seguro-desemprego em contratos de experiência ↓
 Ficou com dúvida? Me chama no direct.
 
 ============================================================
 
 POST 3 DE 5
-Pauta: STF confirma restrições de venda de terras a empresas com capital estrangeiro, diz AGU
-Nota: 8/10
-Link: https://www1.folha.uol.com.br/mercado/2026/04/stf-confirma-restricoes-de-venda-de-terras-a-empresas-com-capital-estrangeiro-diz-agu.shtml
+Pauta: Adicional de Periculosidade para motociclista: Não depende mais de regulamentação
+Nota: 9/10
+Link: https://ebskills.com.br/noticia/871
 ------------------------------------------------------------
 
 [ SLIDE 1 — CAPA ]
-Restrições à venda de terras
+Adicional de Periculosidade para Motociclistas
 
 [ SLIDE 2 — CONTEXTO ]
-O STF confirmou as restrições de venda de terras a empresas com **capital estrangeiro**. Isso afeta sua empresa se ela opera com proprietários estrangeiros.
+O adicional de periculosidade para motociclistas não depende mais de regulamentação. Isso significa que sua empresa deve aplicar esse adicional de acordo com o art. 193 da CLT, independentemente de regulamentações adicionais.
 
 [ SLIDE 3 — O QUE MUDA NA PRÁTICA ]
-• **Verificar** a composição do capital social da sua empresa
-• **Avaliar** as implicações legais sobre a propriedade de terras
+• **Aplicar** adicional de periculosidade a todos os motociclistas que trabalham em atividades perigosas. • **Verificar** se os motivos de trabalho do motociclista expõem-no a riscos que justifiquem o adicional.
 
 [ SLIDE 4 — COMO SE ADEQUAR ]
-1. **Revisar** os estatutos e contrato social para garantir conformidade
-2. **Consultar** advogados especializados em direito agrário e societário
+1. **Revisar** as funções dos motociclistas para identificar riscos. 2. **Aplicar** o adicional de periculosidade de acordo com a legislação, como o art. 193 da CLT.
 
 [ SLIDE 5 — O RISCO DE NÃO SE ADEQUAR ]
-• **Perda** de direitos de propriedade
-• **Multa** por descumprimento da legislação
-• **Prejuízo** à imagem da sua empresa
+• Processos trabalhistas por falta de pagamento do adicional de periculosidade. • **Multas** por não cumprimento da legislação trabalhista, como a Lei nº 13.467/2017.
 
 [ SLIDE 6 — RESUMO PRÁTICO ]
-Sua empresa precisa verificar se há **capital estrangeiro** e avaliar as implicações sobre a propriedade de terras, conforme a decisão do STF.
+Aplicar adicional de periculosidade a motociclistas sem necessidade de regulamentação específica, considerando o art. 193 da CLT e riscos associados à atividade.
 
 [ SLIDE 7 — CTA ]
-SALVA ESSE POST para saber agir sobre restrições de venda de terras ↓
+SALVA ESSE POST para entender melhor o adicional de periculosidade ↓
 Ficou com dúvida? Me chama no direct.
 
 ============================================================
 
 POST 4 DE 5
-Pauta: Participação de mulheres nas câmaras de arbitragem é inferior a 30%
-Nota: 7/10
-Link: https://www.conjur.com.br/2026-abr-24/participacao-de-mulheres-nas-camaras-de-arbitragem-e-inferior-a-30/
+Pauta: Banco de Horas Negativo: Cuidado na Prática
+Nota: 8/10
+Link: https://ebskills.com.br/noticia/867
 ------------------------------------------------------------
 
 [ SLIDE 1 — CAPA ]
-Mulheres em arbitragem
+Banco de Horas Negativo
 
 [ SLIDE 2 — CONTEXTO ]
-A representatividade feminina em câmaras de arbitragem é uma questão importante para sua empresa, visto que reflete a diversidade e inclusão no ambiente de trabalho. De acordo com estatísticas recentes, a participação de mulheres nesses espaços é inferior a 30%.
+O banco de horas negativo pode trazer riscos trabalhistas. De acordo com o art. 58 da CLT, o **controle de jornada** é fundamental para evitar problemas.
 
 [ SLIDE 3 — O QUE MUDA NA PRÁTICA ]
-• **Promover** a diversidade de gênero na seleção de membros para câmaras de arbitragem. • **Garantir** a igualdade de oportunidades para mulheres nos processos de indicação e eleição.
+• **Ajustar** o sistema de controle de jornada para evitar horas negativas
+• **Implementar** um sistema de compensação de horas para evitar o acúmulo de horas negativas
 
 [ SLIDE 4 — COMO SE ADEQUAR ]
-1. **Implementar** políticas de diversidade e inclusão que incentivem a participação feminina em câmaras de arbitragem. 2. **Desenvolver** programas de treinamento e capacitação para mulheres que buscam participar desses processos. 3. **Monitorar** constantemente a representatividade feminina em sua empresa e em outras instituições para identificar áreas de melhoria.
+1. **Verificar** o contrato de trabalho e o acordo coletivo para entender as regras de banco de horas
+2. **Implementar** um sistema de gestão de horas para controlar as horas trabalhadas
 
 [ SLIDE 5 — O RISCO DE NÃO SE ADEQUAR ]
-• **Violação** do art. 5º da Lei nº 11.340/2006, que estabelece a igualdade de gênero. • **Prejuízo** à imagem da sua empresa devido à falta de diversidade e inclusão. • **Perda** de talentos femininos devido à falta de oportunidades.
+• **Pagamento** de horas extras não compensadas
+• **Multa** por descumprimento da legislação trabalhista, conforme o art. 473 da CLT
 
 [ SLIDE 6 — RESUMO PRÁTICO ]
-Para promover a diversidade em sua empresa, é importante **valorizar** a participação feminina em todos os níveis, incluindo as câmaras de arbitragem. Lembre-se de que a **inclusão** e a **diversidade** são fundamentais para um ambiente de trabalho saudável e produtivo.
+É fundamental controlar o banco de horas para evitar problemas trabalhistas. **Controle de jornada** e **sistema de gestão de horas** são essenciais.
 
-[ SLIDE 7 — CTA ]
-SALVA ESSE POST para lembrar da importância da diversidade de gênero em sua empresa ↓
+[ SLIDE 7 — CTA FINAL ]
+SALVA ESSE POST para entender os riscos do banco de horas negativo ↓
 Ficou com dúvida? Me chama no direct.
 
 ============================================================
 
 POST 5 DE 5
-Pauta: Valor probatório da palavra da vítima: limites epistêmicos e standard da dúvida razoável
+Pauta: 24/04 - Links de Atualizações Diárias
 Nota: 7/10
-Link: https://www.conjur.com.br/2026-abr-24/o-valor-probatorio-da-palavra-da-vitima-limites-epistemicos-e-o-standard-da-duvida-razoavel/
+Link: https://ebskills.com.br/noticia/878
 ------------------------------------------------------------
 
 [ SLIDE 1 — CAPA ]
-Palavra da Vitima
+Atualizações Diárias Importantes
 
 [ SLIDE 2 — CONTEXTO ]
-A palavra da vítima pode ser determinante em processos judiciais, segundo o art. 473 da CLT. Sua empresa precisa entender essas implicações.
+Sua empresa precisa estar por dentro das atualizações diárias sobre legislação trabalhista e previdenciária. Isso inclui **leis** e **regulamentações** que afetam diretamente o seu departamento de RH.
 
 [ SLIDE 3 — O QUE MUDA NA PRÁTICA ]
-• **Entende** a valorização da palavra da vítima
-• **Avalie** as evidências em processos internos
+Alguns pontos que mudam na prática incluem: 
+           • **Acompanhar** as atualizações diárias sobre a legislação trabalhista, como o art. 473 da CLT.
+           • **Implementar** mudanças conforme necessário para garantir a conformidade.
 
 [ SLIDE 4 — COMO SE ADEQUAR ]
-1. **Estabeleça** procedimentos claros para denúncias e investigações internas
-2. **Forneça** treinamento sobre **sensibilidade** e **imparcialidade**
+Para se adequar, é importante:
+           1. **Subscrever** fontes confiáveis de atualizações diárias.
+           2. **Treinar** seu time de RH para lidar com as mudanças legais.
 
 [ SLIDE 5 — O RISCO DE NÃO SE ADEQUAR ]
-• Risco de **danno** à reputação da empresa
-• Consequências legais devido à **violação** da Lei nº 14.132/2021
+O risco de não se adequar inclui:
+           • **Multas** por não cumprir com a legislação atualizada.
+           • **Problemas** com a fiscalização trabalhista.
 
 [ SLIDE 6 — RESUMO PRÁTICO ]
-Entenda a valorização da palavra da vítima e estabeleça procedimentos justos.
+Mantenha sua empresa atualizada com as últimas mudanças na legislação trabalhista e previdenciária para evitar riscos e garantir a conformidade.
 
 [ SLIDE 7 — CTA ]
-SALVA ESSE POST para futuras referências ↓
+SALVA ESSE POST para se manter atualizado ↓
 Ficou com dúvida? Me chama no direct.
 
 ============================================================

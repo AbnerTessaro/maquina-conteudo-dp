@@ -107,123 +107,240 @@ def gerar_html(pautas_com_posts, historico=None):
     <title>Pautas DP/RH — @abner.com.dp</title>
     <style>
         :root {{
-            --bg: #071120;
-            --surface: #0d1f35;
-            --card: #112240;
+            --bg: #050d1a;
+            --surface: rgba(13, 27, 52, 0.7);
+            --card: rgba(17, 34, 64, 0.85);
             --gold: #c9a84c;
             --gold-light: #e8c96a;
-            --text: #e8eaf0;
-            --subtext: #8899aa;
-            --border: rgba(201, 168, 76, 0.18);
-            --radius: 14px;
-            --shadow: 0 4px 24px rgba(0,0,0,0.35);
+            --text: #f0f4ff;
+            --subtext: #7a8ca0;
+            --border: rgba(201, 168, 76, 0.14);
+            --radius: 18px;
+            --shadow: 0 8px 40px rgba(0,0,0,0.4);
+            --font: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', sans-serif;
         }}
         [data-theme="light"] {{
-            --bg: #eef2ff;
-            --surface: #e0e8f8;
-            --card: #ffffff;
+            --bg: #f0f4ff;
+            --surface: rgba(220, 230, 250, 0.8);
+            --card: rgba(255, 255, 255, 0.92);
             --gold: #b8860b;
             --gold-light: #d4a017;
             --text: #0f172a;
             --subtext: #475569;
-            --border: #dde3f0;
-            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+            --border: rgba(180, 150, 60, 0.2);
+            --shadow: 0 8px 40px rgba(0,0,0,0.08);
+        }}
+        @keyframes fadeUp {{
+            from {{ opacity: 0; transform: translateY(24px); }}
+            to   {{ opacity: 1; transform: translateY(0); }}
+        }}
+        @keyframes orbPulse {{
+            0%, 100% {{ transform: translateX(-50%) scale(1); opacity: 0.5; }}
+            50%        {{ transform: translateX(-50%) scale(1.08); opacity: 0.72; }}
         }}
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }}
+        body {{
+            font-family: var(--font);
+            background: var(--bg);
+            color: var(--text);
+            -webkit-font-smoothing: antialiased;
+            transition: background 0.4s, color 0.4s;
+        }}
         header {{
-            background: linear-gradient(135deg, #071120 0%, #0d2040 100%);
-            border-bottom: 1px solid var(--gold);
-            padding: 2.2rem 2rem;
+            position: relative; overflow: hidden;
+            padding: 5rem 2rem 4rem;
             text-align: center;
-            position: relative;
+            background: linear-gradient(160deg, #071120 0%, #0a1a35 60%, #071120 100%);
+            border-bottom: 1px solid var(--border);
         }}
-        [data-theme="light"] header {{ background: linear-gradient(135deg, #1e3a6e 0%, #1d4ed8 100%); }}
+        [data-theme="light"] header {{
+            background: linear-gradient(160deg, #1e3a6e 0%, #1d4ed8 60%, #1e3a6e 100%);
+        }}
+        header::before {{
+            content: '';
+            position: absolute; top: -60px; left: 50%;
+            width: 520px; height: 520px;
+            background: radial-gradient(circle, rgba(201,168,76,0.18) 0%, transparent 65%);
+            animation: orbPulse 6s ease-in-out infinite;
+            pointer-events: none;
+        }}
+        header::after {{
+            content: '';
+            position: absolute; bottom: -80px; right: -80px;
+            width: 280px; height: 280px;
+            background: radial-gradient(circle, rgba(29,78,216,0.18) 0%, transparent 65%);
+            pointer-events: none;
+        }}
+        .header-eyebrow {{
+            font-size: 0.7rem; font-weight: 600;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--gold); margin-bottom: 1rem; position: relative;
+        }}
         header h1 {{
-            font-size: 2rem; font-weight: 700;
-            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            font-size: clamp(2.2rem, 6vw, 3.8rem);
+            font-weight: 800; letter-spacing: -0.03em; line-height: 1.08;
+            background: linear-gradient(135deg, #fff 20%, var(--gold-light) 55%, #fff 85%);
             -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+            position: relative; margin-bottom: 0.9rem;
         }}
-        header p {{ color: #94a3b8; margin-top: 0.4rem; font-size: 0.9rem; }}
+        header p {{
+            color: rgba(200,210,230,0.65); font-size: 1rem; font-weight: 400;
+            letter-spacing: 0.02em; position: relative;
+        }}
         [data-theme="light"] header p {{ color: rgba(255,255,255,0.8); }}
         .theme-toggle {{
-            position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
-            background: transparent; border: 1px solid var(--gold); color: var(--gold);
-            padding: 0.45rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.82rem; transition: background 0.2s;
+            position: absolute; right: 1.5rem; top: 1.5rem;
+            background: rgba(255,255,255,0.07);
+            backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.14); color: rgba(255,255,255,0.75);
+            padding: 0.45rem 1rem; border-radius: 20px; cursor: pointer;
+            font-size: 0.8rem; font-family: var(--font); transition: background 0.2s;
         }}
-        .theme-toggle:hover {{ background: rgba(201,168,76,0.12); }}
-        .atualizacao {{ text-align: center; margin: 1.5rem 0 0; color: var(--subtext); font-size: 0.82rem; }}
-        .container {{ max-width: 820px; margin: 0 auto; padding: 0 1rem 4rem; }}
+        .theme-toggle:hover {{ background: rgba(255,255,255,0.14); }}
+        .atualizacao {{
+            text-align: center; margin: 1.5rem 0 0;
+            color: var(--subtext); font-size: 0.8rem; font-family: var(--font);
+        }}
+        .container {{ max-width: 820px; margin: 0 auto; padding: 0 1.2rem 5rem; }}
+        .tabs-wrapper {{
+            display: flex; justify-content: center;
+            margin: 1.8rem 0 0; overflow-x: auto; padding: 0 0.5rem;
+            -webkit-overflow-scrolling: touch;
+        }}
         .tabs-nav {{
-            display: flex; overflow-x: auto;
-            background: var(--surface);
-            border: 1px solid var(--border);
-            border-radius: var(--radius);
-            margin: 1.2rem 0 0;
-            padding: 0 0.5rem;
+            display: inline-flex;
+            background: rgba(255,255,255,0.04);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 50px; padding: 0.3rem; gap: 0.1rem;
+        }}
+        [data-theme="light"] .tabs-nav {{
+            background: rgba(0,0,0,0.05); border-color: rgba(0,0,0,0.08);
         }}
         .tab-btn {{
             background: transparent; border: none; color: var(--subtext);
-            padding: 0.9rem 1.1rem; cursor: pointer; font-size: 0.85rem;
-            white-space: nowrap; border-bottom: 2px solid transparent;
-            transition: all 0.2s; font-family: 'Segoe UI', sans-serif;
+            padding: 0.6rem 1.2rem; cursor: pointer; font-size: 0.84rem;
+            font-weight: 500; white-space: nowrap; border-radius: 40px;
+            transition: all 0.25s cubic-bezier(0.4,0,0.2,1);
+            font-family: var(--font);
         }}
-        .tab-btn:hover {{ color: var(--gold); }}
-        .tab-btn.active {{ color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }}
-        .tab-content {{ display: none; padding-top: 1.2rem; }}
+        .tab-btn:hover {{ color: var(--text); background: rgba(255,255,255,0.06); }}
+        .tab-btn.active {{
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #071120; font-weight: 700;
+            box-shadow: 0 2px 14px rgba(201,168,76,0.32);
+        }}
+        .tab-content {{ display: none; padding-top: 1.6rem; }}
         .tab-content.active {{ display: block; }}
         .card {{
-            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 1.6rem; margin-bottom: 1.2rem; box-shadow: var(--shadow);
-            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+            background: var(--card);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.8rem; margin-bottom: 1.2rem; box-shadow: var(--shadow);
+            position: relative; overflow: hidden;
+            opacity: 0; animation: fadeUp 0.5s ease forwards;
+            transition: transform 0.4s cubic-bezier(0.34,1.56,0.64,1), box-shadow 0.3s, border-color 0.3s;
         }}
-        .card:hover {{ transform: translateY(-3px); box-shadow: 0 8px 32px rgba(201,168,76,0.12); border-color: var(--gold); }}
-        .card-top {{ display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; }}
-        .nota {{ color: white; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.78rem; }}
-        .card h2 {{ font-size: 1.05rem; line-height: 1.55; margin-bottom: 0.65rem; }}
+        .card::before {{
+            content: ''; position: absolute; top: 0; left: 0; right: 0; height: 1px;
+            background: linear-gradient(90deg, transparent, var(--gold), transparent);
+            opacity: 0; transition: opacity 0.3s;
+        }}
+        .card:hover::before {{ opacity: 1; }}
+        .card:hover {{
+            transform: translateY(-5px);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3), 0 0 0 1px rgba(201,168,76,0.18);
+            border-color: rgba(201,168,76,0.28);
+        }}
+        .card:nth-child(1) {{ animation-delay: 0.05s; }}
+        .card:nth-child(2) {{ animation-delay: 0.10s; }}
+        .card:nth-child(3) {{ animation-delay: 0.15s; }}
+        .card:nth-child(4) {{ animation-delay: 0.20s; }}
+        .card:nth-child(5) {{ animation-delay: 0.25s; }}
+        .card-top {{ display: flex; align-items: center; gap: 0.7rem; margin-bottom: 1rem; flex-wrap: wrap; }}
+        .nota {{ color: white; font-weight: 700; padding: 0.22rem 0.72rem; border-radius: 20px; font-size: 0.75rem; letter-spacing: 0.03em; }}
+        .card h2 {{ font-size: 1.1rem; font-weight: 700; line-height: 1.45; margin-bottom: 0.7rem; letter-spacing: -0.01em; }}
         .card h2 a {{ color: var(--text); text-decoration: none; transition: color 0.2s; }}
         .card h2 a:hover {{ color: var(--gold); }}
-        .motivo {{ color: var(--subtext); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1.1rem; }}
+        .motivo {{ color: var(--subtext); font-size: 0.88rem; line-height: 1.72; margin-bottom: 1.2rem; }}
         .card-acoes {{ display: flex; gap: 0.5rem; flex-wrap: wrap; }}
         .btn {{
-            display: inline-block; padding: 0.48rem 1.1rem; border-radius: 7px;
-            font-size: 0.82rem; border: none; cursor: pointer; text-decoration: none; font-weight: 500; transition: all 0.2s;
+            display: inline-block; padding: 0.5rem 1.25rem;
+            border-radius: 50px; font-size: 0.82rem; border: none; cursor: pointer;
+            text-decoration: none; font-weight: 600;
+            transition: all 0.25s; font-family: var(--font); letter-spacing: 0.01em;
         }}
-        .btn-ler {{ background: transparent; border: 1px solid var(--gold); color: var(--gold); }}
-        .btn-ler:hover {{ background: rgba(201,168,76,0.12); }}
+        .btn-ler {{ background: transparent; border: 1px solid rgba(201,168,76,0.4); color: var(--gold); }}
+        .btn-ler:hover {{ background: rgba(201,168,76,0.1); border-color: var(--gold); }}
         .btn-post {{ background: linear-gradient(135deg, #1e3a6e, #1d4ed8); color: white; }}
-        .btn-post:hover {{ opacity: 0.88; }}
-        .post-slides {{ display: none; margin-top: 1.3rem; border-top: 1px solid var(--border); padding-top: 1.1rem; }}
+        .btn-post:hover {{ opacity: 0.85; transform: translateY(-1px); }}
+        .post-slides {{ display: none; margin-top: 1.5rem; border-top: 1px solid var(--border); padding-top: 1.2rem; }}
         .post-slides.aberto {{ display: block; }}
-        .post-titulo {{ font-size: 0.73rem; color: var(--gold); margin-bottom: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }}
-        .slide {{ background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 1rem; margin-bottom: 0.7rem; transition: border-color 0.2s; }}
-        .slide:hover {{ border-color: var(--gold); }}
-        .slide-header {{ display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; }}
-        .slide-num {{ background: var(--gold); color: #071120; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; }}
+        .post-titulo {{ font-size: 0.7rem; color: var(--gold); margin-bottom: 1rem; text-transform: uppercase; letter-spacing: 0.15em; font-weight: 700; }}
+        .slide {{
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border); border-radius: 12px;
+            padding: 1.1rem; margin-bottom: 0.8rem;
+            transition: border-color 0.2s, background 0.2s;
+        }}
+        [data-theme="light"] .slide {{ background: rgba(0,0,0,0.02); }}
+        .slide:hover {{ border-color: rgba(201,168,76,0.35); background: rgba(201,168,76,0.03); }}
+        .slide-header {{ display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.6rem; }}
+        .slide-num {{
+            background: linear-gradient(135deg, var(--gold), var(--gold-light));
+            color: #071120; font-size: 0.65rem; font-weight: 800;
+            padding: 0.18rem 0.5rem; border-radius: 4px; letter-spacing: 0.05em;
+        }}
         .slide-titulo {{ font-size: 0.78rem; font-weight: 600; color: var(--subtext); flex: 1; }}
-        .btn-copiar {{ background: transparent; border: 1px solid var(--border); color: var(--subtext); padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.7rem; cursor: pointer; transition: all 0.2s; }}
+        .btn-copiar {{
+            background: transparent; border: 1px solid var(--border); color: var(--subtext);
+            padding: 0.18rem 0.6rem; border-radius: 4px; font-size: 0.68rem; cursor: pointer;
+            transition: all 0.2s; font-family: var(--font);
+        }}
         .btn-copiar:hover {{ border-color: var(--gold); color: var(--gold); }}
         .btn-copiar.copiado {{ border-color: #22c55e; color: #22c55e; }}
-        .slide-texto {{ font-size: 0.87rem; line-height: 1.72; color: var(--text); white-space: pre-wrap; }}
+        .slide-texto {{ font-size: 0.87rem; line-height: 1.75; color: var(--text); white-space: pre-wrap; }}
         .em-breve-card {{
-            background: var(--card); border: 1px dashed var(--border); border-radius: var(--radius);
-            padding: 3.5rem 2rem; text-align: center; margin: 1rem 0;
+            background: var(--card);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px dashed var(--border); border-radius: var(--radius);
+            padding: 5rem 2rem; text-align: center; margin: 1rem 0;
+            opacity: 0; animation: fadeUp 0.5s ease 0.05s forwards;
         }}
-        .em-breve-icon {{ font-size: 3rem; margin-bottom: 1rem; }}
-        .em-breve-titulo {{ font-size: 1.2rem; font-weight: 700; color: var(--gold); margin-bottom: 0.6rem; }}
-        .em-breve-desc {{ color: var(--subtext); font-size: 0.9rem; line-height: 1.6; }}
-        .hist-lista {{ display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.5rem; }}
+        .em-breve-badge {{
+            display: inline-block;
+            background: rgba(201,168,76,0.1); color: var(--gold);
+            font-size: 0.67rem; font-weight: 700; letter-spacing: 0.16em; text-transform: uppercase;
+            padding: 0.28rem 0.9rem; border-radius: 20px;
+            border: 1px solid rgba(201,168,76,0.22); margin-bottom: 1.5rem;
+        }}
+        .em-breve-icon {{ font-size: 2.8rem; margin-bottom: 1.2rem; }}
+        .em-breve-titulo {{ font-size: 1.4rem; font-weight: 800; color: var(--text); margin-bottom: 0.7rem; letter-spacing: -0.02em; }}
+        .em-breve-desc {{ color: var(--subtext); font-size: 0.9rem; line-height: 1.72; max-width: 380px; margin: 0 auto; }}
+        .hist-lista {{ display: flex; flex-direction: column; gap: 0.8rem; margin-top: 0.5rem; }}
         .hist-item {{
-            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
-            padding: 1rem 1.4rem; display: flex; align-items: center; justify-content: space-between;
-            text-decoration: none; color: var(--text); transition: all 0.2s;
+            background: var(--card);
+            backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.1rem 1.6rem; display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; color: var(--text);
+            opacity: 0; animation: fadeUp 0.4s ease forwards;
+            transition: all 0.35s cubic-bezier(0.34,1.56,0.64,1);
         }}
-        .hist-item:hover {{ border-color: var(--gold); color: var(--gold); transform: translateX(4px); }}
-        .hist-data {{ font-size: 0.95rem; font-weight: 600; }}
-        .hist-arrow {{ color: var(--gold); font-size: 0.85rem; }}
-        .vazio {{ color: var(--subtext); text-align: center; padding: 2.5rem 1rem; font-size: 0.9rem; line-height: 1.6; }}
-        footer {{ text-align: center; color: var(--subtext); font-size: 0.78rem; padding: 2rem; border-top: 1px solid var(--border); }}
-        footer span {{ color: var(--gold); }}
+        .hist-item:nth-child(1) {{ animation-delay: 0.05s; }}
+        .hist-item:nth-child(2) {{ animation-delay: 0.10s; }}
+        .hist-item:nth-child(3) {{ animation-delay: 0.15s; }}
+        .hist-item:nth-child(4) {{ animation-delay: 0.20s; }}
+        .hist-item:nth-child(5) {{ animation-delay: 0.25s; }}
+        .hist-item:hover {{ border-color: rgba(201,168,76,0.3); transform: translateX(6px); box-shadow: var(--shadow); }}
+        .hist-data {{ font-size: 0.95rem; font-weight: 700; letter-spacing: -0.01em; }}
+        .hist-arrow {{ color: var(--gold); font-size: 0.85rem; font-weight: 600; }}
+        .vazio {{ color: var(--subtext); text-align: center; padding: 2.5rem 1rem; font-size: 0.9rem; line-height: 1.72; }}
+        footer {{
+            text-align: center; color: var(--subtext); font-size: 0.78rem;
+            padding: 2rem; border-top: 1px solid var(--border); letter-spacing: 0.02em;
+        }}
+        footer span {{ color: var(--gold); font-weight: 600; }}
     </style>
 </head>
 <body>
@@ -231,18 +348,21 @@ def gerar_html(pautas_com_posts, historico=None):
         <button class="theme-toggle" onclick="toggleTheme()">
             <span id="theme-icon">☀️</span> <span id="theme-label">Modo claro</span>
         </button>
-        <h1>Pautas DP/RH do Dia</h1>
+        <div class="header-eyebrow">Máquina de Conteúdo DP</div>
+        <h1>Pautas do Dia</h1>
         <p>Curadas por IA · @abner.com.dp</p>
     </header>
     <p class="atualizacao">Atualizado em {data_hoje}</p>
     <div class="container">
-        <nav class="tabs-nav">
-            <button class="tab-btn" data-tab="instagram" onclick="showTab('instagram')">📱 Instagram</button>
-            <button class="tab-btn" data-tab="linkedin" onclick="showTab('linkedin')">💼 LinkedIn</button>
-            <button class="tab-btn" data-tab="stories" onclick="showTab('stories')">⭕ Stories</button>
-            <button class="tab-btn" data-tab="reels" onclick="showTab('reels')">🎬 Reels</button>
-            <button class="tab-btn" data-tab="historico" onclick="showTab('historico')">📅 Histórico</button>
-        </nav>
+        <div class="tabs-wrapper">
+            <nav class="tabs-nav">
+                <button class="tab-btn" data-tab="instagram" onclick="showTab('instagram')">📱 Instagram</button>
+                <button class="tab-btn" data-tab="linkedin" onclick="showTab('linkedin')">💼 LinkedIn</button>
+                <button class="tab-btn" data-tab="stories" onclick="showTab('stories')">⭕ Stories</button>
+                <button class="tab-btn" data-tab="reels" onclick="showTab('reels')">🎬 Reels</button>
+                <button class="tab-btn" data-tab="historico" onclick="showTab('historico')">📅 Histórico</button>
+            </nav>
+        </div>
         <div id="tab-instagram" class="tab-content">
             {cards_insta}
         </div>
@@ -251,15 +371,17 @@ def gerar_html(pautas_com_posts, historico=None):
         </div>
         <div id="tab-stories" class="tab-content">
             <div class="em-breve-card">
+                <div class="em-breve-badge">Em breve</div>
                 <div class="em-breve-icon">⭕</div>
-                <div class="em-breve-titulo">Stories — Em breve</div>
+                <div class="em-breve-titulo">Stories</div>
                 <div class="em-breve-desc">O template de Stories está sendo desenvolvido.<br>Em breve você terá rascunhos prontos para os Stories do Instagram.</div>
             </div>
         </div>
         <div id="tab-reels" class="tab-content">
             <div class="em-breve-card">
+                <div class="em-breve-badge">Em breve</div>
                 <div class="em-breve-icon">🎬</div>
-                <div class="em-breve-titulo">Reels — Em breve</div>
+                <div class="em-breve-titulo">Reels</div>
                 <div class="em-breve-desc">O roteiro de Reels está sendo desenvolvido.<br>Em breve você terá scripts prontos para gravar seus Reels.</div>
             </div>
         </div>
