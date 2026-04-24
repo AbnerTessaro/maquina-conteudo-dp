@@ -1,5 +1,6 @@
 import os
 import sys
+import glob
 from datetime import datetime
 
 sys.path.append(os.path.dirname(__file__))
@@ -8,6 +9,7 @@ from curador import curar_artigos
 from gerador_posts import gerar_post
 
 OUTPUT_FILE = os.path.join(os.path.dirname(__file__), "..", "docs", "index.html")
+DOCS_DIR = os.path.join(os.path.dirname(__file__), "..", "docs")
 
 
 def renderizar_slides(slides):
@@ -29,83 +31,270 @@ def renderizar_slides(slides):
     return html
 
 
-def gerar_html(pautas_com_posts):
-    data_hoje = datetime.now().strftime("%d/%m/%Y às %H:%M")
-
+def renderizar_cards(pautas_com_posts, prefixo):
     cards = ""
     for i, (pauta, slides) in enumerate(pautas_com_posts):
         nota = pauta.get("nota", 0)
         cor = "#22c55e" if nota >= 8 else "#f59e0b" if nota >= 6 else "#ef4444"
         slides_html = renderizar_slides(slides)
+        post_id = f"post-{prefixo}-{i}"
 
         cards += f"""
         <div class="card">
-            <span class="nota" style="background:{cor};">{nota}/10</span>
+            <div class="card-top">
+                <span class="nota" style="background:{cor};">{nota}/10</span>
+            </div>
             <h2><a href="{pauta['link']}" target="_blank">{pauta['titulo']}</a></h2>
             <p class="motivo">{pauta['motivo']}</p>
             <div class="card-acoes">
-                <a href="{pauta['link']}" target="_blank" class="btn">Ler artigo →</a>
-                <button class="btn btn-post" onclick="togglePost('post-{i}')">Ver rascunho do post ▼</button>
+                <a href="{pauta['link']}" target="_blank" class="btn btn-ler">Ler artigo →</a>
+                <button class="btn btn-post" onclick="togglePost('{post_id}')">Ver rascunho ▼</button>
             </div>
-            <div class="post-slides" id="post-{i}">
-                <h3 class="post-titulo">Rascunho — Carrossel Instagram</h3>
+            <div class="post-slides" id="{post_id}">
+                <p class="post-titulo">✦ Rascunho — Carrossel</p>
                 {slides_html}
             </div>
         </div>"""
+    return cards
+
+
+def listar_historico():
+    arquivos = sorted(
+        glob.glob(os.path.join(DOCS_DIR, "????-??-??.html")),
+        reverse=True
+    )
+    historico = []
+    for arq in arquivos:
+        nome = os.path.basename(arq)
+        data_str = nome.replace(".html", "")
+        try:
+            dt = datetime.strptime(data_str, "%Y-%m-%d")
+            historico.append({
+                "arquivo": nome,
+                "data": dt.strftime("%d/%m/%Y"),
+                "data_iso": data_str,
+            })
+        except ValueError:
+            pass
+    return historico
+
+
+def gerar_html(pautas_com_posts, historico=None):
+    if historico is None:
+        historico = []
+    data_hoje = datetime.now().strftime("%d/%m/%Y às %H:%M")
+
+    cards_insta = renderizar_cards(pautas_com_posts, "insta")
+    cards_linkedin = renderizar_cards(pautas_com_posts, "linkedin")
+
+    if historico:
+        hist_html = '<div class="hist-lista">'
+        for item in historico:
+            hist_html += f"""
+            <a href="{item['arquivo']}" class="hist-item">
+                <span class="hist-data">{item['data']}</span>
+                <span class="hist-arrow">Ver pautas →</span>
+            </a>"""
+        hist_html += "</div>"
+    else:
+        hist_html = '<p class="vazio">Nenhum histórico ainda. A partir do segundo dia de uso os arquivos anteriores aparecem aqui.</p>'
 
     return f"""<!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="pt-BR" data-theme="dark">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pautas DP/RH — @abner.com.dp</title>
     <style>
+        :root {{
+            --bg: #071120;
+            --surface: #0d1f35;
+            --card: #112240;
+            --gold: #c9a84c;
+            --gold-light: #e8c96a;
+            --text: #e8eaf0;
+            --subtext: #8899aa;
+            --border: rgba(201, 168, 76, 0.18);
+            --radius: 14px;
+            --shadow: 0 4px 24px rgba(0,0,0,0.35);
+        }}
+        [data-theme="light"] {{
+            --bg: #eef2ff;
+            --surface: #e0e8f8;
+            --card: #ffffff;
+            --gold: #b8860b;
+            --gold-light: #d4a017;
+            --text: #0f172a;
+            --subtext: #475569;
+            --border: #dde3f0;
+            --shadow: 0 4px 24px rgba(0,0,0,0.08);
+        }}
         * {{ margin: 0; padding: 0; box-sizing: border-box; }}
-        body {{ font-family: 'Segoe UI', sans-serif; background: #f1f5f9; color: #1e293b; }}
-        header {{ background: #1e293b; color: white; padding: 2rem; text-align: center; }}
-        header h1 {{ font-size: 1.8rem; margin-bottom: 0.5rem; }}
-        header p {{ color: #94a3b8; font-size: 0.95rem; }}
-        .atualizacao {{ text-align: center; margin: 1.5rem 0; color: #64748b; font-size: 0.9rem; }}
-        .container {{ max-width: 800px; margin: 0 auto; padding: 0 1rem 3rem; }}
-        .card {{ background: white; border-radius: 12px; padding: 1.5rem; margin-bottom: 1.2rem; box-shadow: 0 1px 3px rgba(0,0,0,0.1); }}
-        .nota {{ display: inline-block; color: white; font-weight: bold; padding: 0.3rem 0.8rem; border-radius: 20px; font-size: 0.85rem; margin-bottom: 0.8rem; }}
-        .card h2 {{ font-size: 1.1rem; margin-bottom: 0.7rem; line-height: 1.4; }}
-        .card h2 a {{ color: #1e293b; text-decoration: none; }}
-        .card h2 a:hover {{ color: #3b82f6; }}
-        .motivo {{ color: #475569; font-size: 0.95rem; line-height: 1.5; margin-bottom: 1rem; }}
-        .card-acoes {{ display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0; }}
-        .btn {{ display: inline-block; background: #3b82f6; color: white; padding: 0.5rem 1rem; border-radius: 6px; text-decoration: none; font-size: 0.85rem; border: none; cursor: pointer; }}
-        .btn:hover {{ background: #2563eb; }}
-        .btn-post {{ background: #6366f1; }}
-        .btn-post:hover {{ background: #4f46e5; }}
-        .post-slides {{ display: none; margin-top: 1.2rem; border-top: 1px solid #e2e8f0; padding-top: 1rem; }}
+        body {{ font-family: 'Segoe UI', sans-serif; background: var(--bg); color: var(--text); transition: background 0.3s, color 0.3s; }}
+        header {{
+            background: linear-gradient(135deg, #071120 0%, #0d2040 100%);
+            border-bottom: 1px solid var(--gold);
+            padding: 2.2rem 2rem;
+            text-align: center;
+            position: relative;
+        }}
+        [data-theme="light"] header {{ background: linear-gradient(135deg, #1e3a6e 0%, #1d4ed8 100%); }}
+        header h1 {{
+            font-size: 2rem; font-weight: 700;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light), var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+        }}
+        header p {{ color: #94a3b8; margin-top: 0.4rem; font-size: 0.9rem; }}
+        [data-theme="light"] header p {{ color: rgba(255,255,255,0.8); }}
+        .theme-toggle {{
+            position: absolute; right: 1.5rem; top: 50%; transform: translateY(-50%);
+            background: transparent; border: 1px solid var(--gold); color: var(--gold);
+            padding: 0.45rem 1rem; border-radius: 20px; cursor: pointer; font-size: 0.82rem; transition: background 0.2s;
+        }}
+        .theme-toggle:hover {{ background: rgba(201,168,76,0.12); }}
+        .atualizacao {{ text-align: center; margin: 1.5rem 0 0; color: var(--subtext); font-size: 0.82rem; }}
+        .container {{ max-width: 820px; margin: 0 auto; padding: 0 1rem 4rem; }}
+        .tabs-nav {{
+            display: flex; overflow-x: auto;
+            background: var(--surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin: 1.2rem 0 0;
+            padding: 0 0.5rem;
+        }}
+        .tab-btn {{
+            background: transparent; border: none; color: var(--subtext);
+            padding: 0.9rem 1.1rem; cursor: pointer; font-size: 0.85rem;
+            white-space: nowrap; border-bottom: 2px solid transparent;
+            transition: all 0.2s; font-family: 'Segoe UI', sans-serif;
+        }}
+        .tab-btn:hover {{ color: var(--gold); }}
+        .tab-btn.active {{ color: var(--gold); border-bottom-color: var(--gold); font-weight: 600; }}
+        .tab-content {{ display: none; padding-top: 1.2rem; }}
+        .tab-content.active {{ display: block; }}
+        .card {{
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1.6rem; margin-bottom: 1.2rem; box-shadow: var(--shadow);
+            transition: transform 0.2s, box-shadow 0.2s, border-color 0.2s;
+        }}
+        .card:hover {{ transform: translateY(-3px); box-shadow: 0 8px 32px rgba(201,168,76,0.12); border-color: var(--gold); }}
+        .card-top {{ display: flex; align-items: center; gap: 0.7rem; margin-bottom: 0.9rem; flex-wrap: wrap; }}
+        .nota {{ color: white; font-weight: 700; padding: 0.25rem 0.75rem; border-radius: 20px; font-size: 0.78rem; }}
+        .card h2 {{ font-size: 1.05rem; line-height: 1.55; margin-bottom: 0.65rem; }}
+        .card h2 a {{ color: var(--text); text-decoration: none; transition: color 0.2s; }}
+        .card h2 a:hover {{ color: var(--gold); }}
+        .motivo {{ color: var(--subtext); font-size: 0.88rem; line-height: 1.65; margin-bottom: 1.1rem; }}
+        .card-acoes {{ display: flex; gap: 0.5rem; flex-wrap: wrap; }}
+        .btn {{
+            display: inline-block; padding: 0.48rem 1.1rem; border-radius: 7px;
+            font-size: 0.82rem; border: none; cursor: pointer; text-decoration: none; font-weight: 500; transition: all 0.2s;
+        }}
+        .btn-ler {{ background: transparent; border: 1px solid var(--gold); color: var(--gold); }}
+        .btn-ler:hover {{ background: rgba(201,168,76,0.12); }}
+        .btn-post {{ background: linear-gradient(135deg, #1e3a6e, #1d4ed8); color: white; }}
+        .btn-post:hover {{ opacity: 0.88; }}
+        .post-slides {{ display: none; margin-top: 1.3rem; border-top: 1px solid var(--border); padding-top: 1.1rem; }}
         .post-slides.aberto {{ display: block; }}
-        .post-titulo {{ font-size: 0.85rem; color: #64748b; margin-bottom: 0.8rem; text-transform: uppercase; letter-spacing: 0.05em; }}
-        .slide {{ background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 8px; padding: 1rem; margin-bottom: 0.7rem; }}
-        .slide-header {{ display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.5rem; }}
-        .slide-num {{ background: #1e293b; color: white; font-size: 0.75rem; padding: 0.2rem 0.5rem; border-radius: 4px; }}
-        .slide-titulo {{ font-size: 0.8rem; font-weight: bold; color: #475569; flex: 1; }}
-        .btn-copiar {{ background: #10b981; color: white; border: none; padding: 0.25rem 0.6rem; border-radius: 4px; font-size: 0.75rem; cursor: pointer; }}
-        .btn-copiar:hover {{ background: #059669; }}
-        .btn-copiar.copiado {{ background: #6b7280; }}
-        .slide-texto {{ font-size: 0.9rem; line-height: 1.6; color: #334155; white-space: pre-wrap; }}
-        footer {{ text-align: center; color: #94a3b8; font-size: 0.8rem; padding: 1.5rem; }}
+        .post-titulo {{ font-size: 0.73rem; color: var(--gold); margin-bottom: 0.9rem; text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }}
+        .slide {{ background: var(--surface); border: 1px solid var(--border); border-radius: 9px; padding: 1rem; margin-bottom: 0.7rem; transition: border-color 0.2s; }}
+        .slide:hover {{ border-color: var(--gold); }}
+        .slide-header {{ display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.55rem; }}
+        .slide-num {{ background: var(--gold); color: #071120; font-size: 0.68rem; font-weight: 700; padding: 0.2rem 0.5rem; border-radius: 4px; }}
+        .slide-titulo {{ font-size: 0.78rem; font-weight: 600; color: var(--subtext); flex: 1; }}
+        .btn-copiar {{ background: transparent; border: 1px solid var(--border); color: var(--subtext); padding: 0.2rem 0.65rem; border-radius: 4px; font-size: 0.7rem; cursor: pointer; transition: all 0.2s; }}
+        .btn-copiar:hover {{ border-color: var(--gold); color: var(--gold); }}
+        .btn-copiar.copiado {{ border-color: #22c55e; color: #22c55e; }}
+        .slide-texto {{ font-size: 0.87rem; line-height: 1.72; color: var(--text); white-space: pre-wrap; }}
+        .em-breve-card {{
+            background: var(--card); border: 1px dashed var(--border); border-radius: var(--radius);
+            padding: 3.5rem 2rem; text-align: center; margin: 1rem 0;
+        }}
+        .em-breve-icon {{ font-size: 3rem; margin-bottom: 1rem; }}
+        .em-breve-titulo {{ font-size: 1.2rem; font-weight: 700; color: var(--gold); margin-bottom: 0.6rem; }}
+        .em-breve-desc {{ color: var(--subtext); font-size: 0.9rem; line-height: 1.6; }}
+        .hist-lista {{ display: flex; flex-direction: column; gap: 0.7rem; margin-top: 0.5rem; }}
+        .hist-item {{
+            background: var(--card); border: 1px solid var(--border); border-radius: var(--radius);
+            padding: 1rem 1.4rem; display: flex; align-items: center; justify-content: space-between;
+            text-decoration: none; color: var(--text); transition: all 0.2s;
+        }}
+        .hist-item:hover {{ border-color: var(--gold); color: var(--gold); transform: translateX(4px); }}
+        .hist-data {{ font-size: 0.95rem; font-weight: 600; }}
+        .hist-arrow {{ color: var(--gold); font-size: 0.85rem; }}
+        .vazio {{ color: var(--subtext); text-align: center; padding: 2.5rem 1rem; font-size: 0.9rem; line-height: 1.6; }}
+        footer {{ text-align: center; color: var(--subtext); font-size: 0.78rem; padding: 2rem; border-top: 1px solid var(--border); }}
+        footer span {{ color: var(--gold); }}
     </style>
 </head>
 <body>
     <header>
+        <button class="theme-toggle" onclick="toggleTheme()">
+            <span id="theme-icon">☀️</span> <span id="theme-label">Modo claro</span>
+        </button>
         <h1>Pautas DP/RH do Dia</h1>
-        <p>Curadas por IA para @abner.com.dp</p>
+        <p>Curadas por IA · @abner.com.dp</p>
     </header>
     <p class="atualizacao">Atualizado em {data_hoje}</p>
     <div class="container">
-        {cards}
+        <nav class="tabs-nav">
+            <button class="tab-btn" data-tab="instagram" onclick="showTab('instagram')">📱 Instagram</button>
+            <button class="tab-btn" data-tab="linkedin" onclick="showTab('linkedin')">💼 LinkedIn</button>
+            <button class="tab-btn" data-tab="stories" onclick="showTab('stories')">⭕ Stories</button>
+            <button class="tab-btn" data-tab="reels" onclick="showTab('reels')">🎬 Reels</button>
+            <button class="tab-btn" data-tab="historico" onclick="showTab('historico')">📅 Histórico</button>
+        </nav>
+        <div id="tab-instagram" class="tab-content">
+            {cards_insta}
+        </div>
+        <div id="tab-linkedin" class="tab-content">
+            {cards_linkedin}
+        </div>
+        <div id="tab-stories" class="tab-content">
+            <div class="em-breve-card">
+                <div class="em-breve-icon">⭕</div>
+                <div class="em-breve-titulo">Stories — Em breve</div>
+                <div class="em-breve-desc">O template de Stories está sendo desenvolvido.<br>Em breve você terá rascunhos prontos para os Stories do Instagram.</div>
+            </div>
+        </div>
+        <div id="tab-reels" class="tab-content">
+            <div class="em-breve-card">
+                <div class="em-breve-icon">🎬</div>
+                <div class="em-breve-titulo">Reels — Em breve</div>
+                <div class="em-breve-desc">O roteiro de Reels está sendo desenvolvido.<br>Em breve você terá scripts prontos para gravar seus Reels.</div>
+            </div>
+        </div>
+        <div id="tab-historico" class="tab-content">
+            {hist_html}
+        </div>
     </div>
-    <footer>Gerado automaticamente · Máquina de Conteúdo DP</footer>
+    <footer>Gerado automaticamente · <span>Máquina de Conteúdo DP</span></footer>
     <script>
+        function showTab(tabId) {{
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.add('active');
+            document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+            localStorage.setItem('activeTab', tabId);
+        }}
+        function toggleTheme() {{
+            const next = document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
+            document.documentElement.setAttribute('data-theme', next);
+            localStorage.setItem('theme', next);
+            updateThemeBtn(next);
+        }}
+        function updateThemeBtn(theme) {{
+            document.getElementById('theme-icon').textContent = theme === 'dark' ? '☀️' : '🌙';
+            document.getElementById('theme-label').textContent = theme === 'dark' ? 'Modo claro' : 'Modo escuro';
+        }}
+        (function() {{
+            const theme = localStorage.getItem('theme') || 'dark';
+            document.documentElement.setAttribute('data-theme', theme);
+            updateThemeBtn(theme);
+            const tab = localStorage.getItem('activeTab') || 'instagram';
+            showTab(tab);
+        }})();
         function togglePost(id) {{
-            const el = document.getElementById(id);
-            el.classList.toggle('aberto');
+            document.getElementById(id).classList.toggle('aberto');
         }}
         function copiar(btn) {{
             const texto = btn.closest('.slide').querySelector('.slide-texto').dataset.texto;
@@ -166,14 +355,21 @@ def main():
         pautas_com_posts.append((pauta, slides))
 
     print("Gerando HTML...")
-    html = gerar_html(pautas_com_posts)
+    historico = listar_historico()
+    html = gerar_html(pautas_com_posts, historico)
 
     os.makedirs(os.path.dirname(os.path.abspath(OUTPUT_FILE)), exist_ok=True)
     with open(OUTPUT_FILE, "w", encoding="utf-8") as f:
         f.write(html)
 
+    data_hoje_str = datetime.now().strftime("%Y-%m-%d")
+    arquivo_dated = os.path.join(DOCS_DIR, f"{data_hoje_str}.html")
+    with open(arquivo_dated, "w", encoding="utf-8") as f:
+        f.write(html)
+
     arquivo_txt = salvar_txt(pautas_com_posts)
     print(f"Site gerado em: docs/index.html")
+    print(f"Histórico salvo em: docs/{data_hoje_str}.html")
     print(f"Posts salvos em: {os.path.relpath(arquivo_txt)}")
 
 
