@@ -24,11 +24,13 @@ jobs:
           python-version: '3.11'
 
       - name: Instalar dependências
-        run: pip install feedparser groq python-dotenv google-genai
+        run: pip install feedparser groq python-dotenv google-genai requests
 
       - name: Rodar o pipeline
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          EBSKILLS_EMAIL: ${{ secrets.EBSKILLS_EMAIL }}
+          EBSKILLS_PASSWORD: ${{ secrets.EBSKILLS_PASSWORD }}
         run: python src/gerador_html.py
 
       - name: Salvar resultado no repositório

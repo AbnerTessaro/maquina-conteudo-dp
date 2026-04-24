@@ -1,4 +1,5 @@
 import feedparser
+from colector_ebskills import fetch_ebskills
 
 FEEDS = [
     "https://www.conjur.com.br/rss.xml",          # Consultor Jurídico — direito trabalhista
@@ -22,10 +23,15 @@ def fetch_rss_feed(feed_url):
 
 def fetch_todos_feeds():
     todos = []
+    try:
+        artigos_eb = fetch_ebskills()
+        todos.extend(artigos_eb[:12])  # EB Skills primeiro — conteúdo específico de DP
+    except Exception:
+        pass
     for url in FEEDS:
         try:
             artigos = fetch_rss_feed(url)
-            todos.extend(artigos)
+            todos.extend(artigos[:5])  # 5 por feed RSS — contexto geral
         except Exception:
             pass
     return todos
